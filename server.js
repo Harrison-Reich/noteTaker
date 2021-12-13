@@ -9,4 +9,8 @@ app.use(express.json())
 
 app.use(require('./routes/itemRoutes.js'))
 
+app.get('/notes', (req,res) => {
+  res.sendFile(path.join(__dirname, 'public', 'notes.html'))
+})
+
 app.listen(3000)

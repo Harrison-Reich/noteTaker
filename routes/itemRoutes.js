@@ -26,6 +26,7 @@ router.post('/api/notes', (req, res) => {
   })
 })
 
+// deletes note(s) data
 router.delete('/api/notes/:id', (req, res) => {
   fs.readFile(path.join(__dirname, '..', 'db', 'db.json'), 'utf8', (err, data) => {
     const notes = JSON.parse(data)

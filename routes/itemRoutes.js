@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const path = require('path')
 const fs = require('fs')
-const { v4: uuid4 } = require
+const { v4: uuid4 } = require('uuid');
 
 // retrives note(s) data
 router.get('/api/notes', (req, res) => {

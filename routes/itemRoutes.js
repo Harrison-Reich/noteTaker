@@ -16,7 +16,7 @@ router.post('/api/notes', (req, res) => {
   const note = req.body
   note.id = uuidv4();
   fs.readFile(path.join(__dirname, '..', 'db', 'db.json'), 'utf8', (err, data) => {
-    if (err) { console.log('We have a problem') }
+    if (err) { console.log(err) }
     const notes = JSON.parse(data)
     notes.push(note)
     fs.writeFile(path.join(__dirname, '..', 'db', 'db.json'), JSON.stringify(notes), err => {

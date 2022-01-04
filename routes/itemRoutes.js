@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const path = require('path')
 const fs = require('fs')
-const { v4: uuid4 } = require('uuid');
+const uuidv4 = require('uuid');
 
 // retrives note(s) data
 router.get('/api/notes', (req, res) => {
@@ -14,17 +14,16 @@ router.get('/api/notes', (req, res) => {
 // pushes note(s) data
 router.post('/api/notes', (req, res) => {
   const note = req.body
-  console.log(note)
-  // note.id = uuidv4();
-  // fs.readFile(path.join(__dirname, '..', 'db', 'db.json'), 'utf8', (err, data) => {
-  //   if (err) { console.log(err) }
-  //   const notes = JSON.parse(data)
-  //   notes.push(note)
-  //   fs.writeFile(path.join(__dirname, '..', 'db', 'db.json'), JSON.stringify(notes), err => {
-  //     if (err) { console.log(err) }
-  //     res.sendStatus(200)
-  //   })
-  // })
+  note.id = uuidv4();
+  fs.readFile(path.join(__dirname, '..', 'db', 'db.json'), 'utf8', (err, data) => {
+    if (err) { console.log(err) }
+    const notes = JSON.parse(data)
+    notes.push(note)
+    fs.writeFile(path.join(__dirname, '..', 'db', 'db.json'), JSON.stringify(notes), err => {
+      if (err) { console.log(err) }
+      res.sendStatus(200)
+    })
+  })
 })
 
 // deletes note(s) data

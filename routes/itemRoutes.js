@@ -14,16 +14,17 @@ router.get('/api/notes', (req, res) => {
 // pushes note(s) data
 router.post('/api/notes', (req, res) => {
   const note = req.body
-  note.id = uuidv4();
-  fs.readFile(path.join(__dirname, '..', 'db', 'db.json'), 'utf8', (err, data) => {
-    if (err) { console.log(err) }
-    const notes = JSON.parse(data)
-    notes.push(note)
-    fs.writeFile(path.join(__dirname, '..', 'db', 'db.json'), JSON.stringify(notes), err => {
-      if (err) { console.log(err) }
-      res.sendStatus(200)
-    })
-  })
+  console.log(note)
+  // note.id = uuidv4();
+  // fs.readFile(path.join(__dirname, '..', 'db', 'db.json'), 'utf8', (err, data) => {
+  //   if (err) { console.log(err) }
+  //   const notes = JSON.parse(data)
+  //   notes.push(note)
+  //   fs.writeFile(path.join(__dirname, '..', 'db', 'db.json'), JSON.stringify(notes), err => {
+  //     if (err) { console.log(err) }
+  //     res.sendStatus(200)
+  //   })
+  // })
 })
 
 // deletes note(s) data
@@ -37,7 +38,7 @@ router.delete('/api/notes/:id', (req, res) => {
       }
     }
     fs.writeFile(path.join(__dirname, '..', 'db', 'db.json'), JSON.stringify(notes), err => {
-      if (err) {console.log(err)}
+      if (err) { console.log(err) }
       res.sendStatus(200)
     })
   })
